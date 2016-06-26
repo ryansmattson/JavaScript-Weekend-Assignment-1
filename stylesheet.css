@@ -1,3 +1,11 @@
-h3 {
-  width: 150px;
+html {
+  font-family: 'Trocchi', serif;
+}
+ol {
+  line-height: 25px;
+}
+ul {
+  list-style-type: none;
+  font-weight: bold;
+  font-size: 20px;
 }
