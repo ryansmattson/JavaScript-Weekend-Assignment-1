@@ -24,8 +24,6 @@ var initialList = [claim1, claim2, claim3, claim4, claim5, claim6, claim7, claim
 
 var totalPayedOut = 0;
 
-//final array showing how much is paid out to each client
-//Paid out $' + amount + ' for ' + claim.patientName
 
 function Claim(name, type, cost){
 	this.patientName = name;
@@ -33,13 +31,12 @@ function Claim(name, type, cost){
 	this.visitCost = cost;
 }
 
-console.log(initialList);
 
-//function to determine percent covered
+//Function to determine percent covered
 function percentageCovered(claim){
 
 	var percent = 0;
-//calculate how what percentage of the claim is covered for each visitType.
+	//Calculate how what percentage of the claim is covered for each visitType.
 	switch(claim.visitType) {
 		case 'Optical':
 			percent = 0;
@@ -54,33 +51,34 @@ function percentageCovered(claim){
 			percent = 50;
 			break;
 	}
-//return the percentage of the claim covered.
+	//Return the percentage of the claim covered.
 	return percent;
 }
 
-//function to determine amount covered and log out for each patient.
+//Function to determine amount covered and log out for each patient.
 function amountCovered(claim){
 	var paidOutPerClient = '';
 	var percent = percentageCovered(claim);
-//amount paid out rounded to the nearest dollar amount.
+	//Amount paid out rounded to the nearest dollar amount.
 	var amount = Math.round(claim.visitCost * (percent / 100));
-//add to the total money paid out.  Logged at the end.
+	//Add to the total money paid out.  Logged at the end.
 	totalPayedOut += amount;
 	paidOutPerClient += ('Paid out $' + amount + ' for ' + claim.patientName);
-//add new ol item for each client's details
+	//Add new ol item for each client's details
 	$('.list ol').append('<li>'+paidOutPerClient+'</li>');
 	console.log('Paid out $' + amount + ' for ' + claim.patientName);
 }
 
-//iterate through the claims array.
+//Iterate through the claims array.
 for (var i = 0; i < initialList.length; i++) {
 	amountCovered(initialList[i]);
 }
 
-//log out the total amount paid out.
+//Add total amount.  Highlight li items and total.
 $('.list ul').append('<li>Total paid out: $'+totalPayedOut+'</li>');
-console.log('Total paid out: ', totalPayedOut);
+$('.list ol li:even, .list ul').css('background-color', '#ced9e4');
 
-//jQuery
+//log out the total amount paid out.
+console.log('Total paid out: ', totalPayedOut);
 
 })
