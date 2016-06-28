@@ -63,9 +63,9 @@ function amountCovered(claim){
 	var amount = Math.round(claim.visitCost * (percent / 100));
 	//Add to the total money paid out.  Logged at the end.
 	totalPayedOut += amount;
-	paidOutPerClient += ('Paid out $' + amount + ' for ' + claim.patientName);
+	paidOutPerClient += ('Paid out $<mark>' + amount + '</mark> for ' + claim.patientName);
 	//Add new ol item for each client's details
-	$('.list ol').append('<li>'+paidOutPerClient+'</li>');
+	$('table').append('<tr><td>' + paidOutPerClient + '</td></tr>');
 	console.log('Paid out $' + amount + ' for ' + claim.patientName);
 }
 
@@ -75,8 +75,8 @@ for (var i = 0; i < initialList.length; i++) {
 }
 
 //Add total amount.  Highlight li items and total.
-$('.list ul').append('<li>Total paid out: $'+totalPayedOut+'</li>');
-$('.list ol li:even, .list ul').css('background-color', '#ced9e4');
+$('.container-fluid').append('<h3>Total paid out: <span class="label label-success">$ '+totalPayedOut+'</span></h3>');
+// $('.list ol li:even, .list ul').css('background-color', '#ced9e4');
 
 //log out the total amount paid out.
 console.log('Total paid out: ', totalPayedOut);
